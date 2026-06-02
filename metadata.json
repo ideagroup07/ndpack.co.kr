@@ -1,0 +1,8 @@
+{
+  "name": "ndpack.co.kr",
+  "description": "식품과 공산품을 담는 포장재 전문기업 엔디팩",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

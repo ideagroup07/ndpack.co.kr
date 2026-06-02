@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Netlify Forms Hidden Detection Form -->
+    <form name="contact-form" data-netlify="true" method="POST" enctype="multipart/form-data" hidden style="display: none;">
+      <input type="hidden" name="form-name" value="contact-form" />
+      <input type="text" name="company" />
+      <input type="text" name="name" />
+      <input type="text" name="phone" />
+      <input type="email" name="email" />
+      <input type="text" name="purpose" />
+      <input type="text" name="shape" />
+      <input type="text" name="width" />
+      <input type="text" name="length" />
+      <input type="text" name="gusset" />
+      <input type="text" name="quantity" />
+      <input type="file" name="attachment" />
+      <textarea name="message"></textarea>
+    </form>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
