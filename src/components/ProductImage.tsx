@@ -4,50 +4,53 @@ type ProductImageProps = {
   src?: string;
   alt?: string;
   className?: string;
-  product?: {
-    imageUrl?: string;
-    name?: string;
-  };
+  type?: string;
+  fileName?: string;
+  aspectRatio?: 'square' | 'wide' | 'video' | string;
 };
 
 const ProductImage = ({
   src,
-  alt,
+  alt = '제품 이미지',
   className = '',
-  product,
+  aspectRatio = 'square',
 }: ProductImageProps) => {
-  const imageSrc = src || product?.imageUrl || '';
-  const imageAlt = alt || product?.name || '제품 이미지';
   const [isImageError, setIsImageError] = useState(false);
 
   useEffect(() => {
     setIsImageError(false);
-  }, [imageSrc]);
+  }, [src]);
 
-  const wrapperClassName = [
+  const aspectClass =
+    aspectRatio === 'wide'
+      ? 'aspect-[16/9]'
+      : aspectRatio === 'video'
+        ? 'aspect-video'
+        : 'aspect-square';
+
+  const frameClassName = [
     'relative w-full overflow-hidden bg-gray-100',
-    'min-h-[220px] sm:min-h-[240px] md:min-h-[260px]',
+    aspectClass,
     className,
   ]
     .filter(Boolean)
     .join(' ');
 
-  if (!imageSrc || isImageError) {
+  if (!src || isImageError) {
     return (
-      <div className={wrapperClassName}>
+      <div className={frameClassName}>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
-          <div className="mb-2 text-3xl leading-none">▧</div>
-          <div className="text-sm font-semibold">이미지 없음</div>
+          <div className="text-sm font-bold">이미지 없음</div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={wrapperClassName}>
+    <div className={frameClassName}>
       <img
-        src={imageSrc}
-        alt={imageAlt}
+        src={src}
+        alt={alt}
         className="absolute inset-0 h-full w-full object-cover"
         loading="lazy"
         onError={() => setIsImageError(true)}
