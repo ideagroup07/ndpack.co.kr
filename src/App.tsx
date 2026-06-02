@@ -64,33 +64,48 @@ export default function App() {
   const [adminMode, setAdminMode] = useState<boolean>(false);
 
   // Persistent States
+    const PRODUCT_DATA_VERSION = '2026-06-02-product-image-reset';
+
   const [products, setProducts] = useState<Product[]>(() => {
+    const savedVersion = localStorage.getItem('nd_products_version');
+
+    if (savedVersion !== PRODUCT_DATA_VERSION) {
+      localStorage.setItem('nd_products', JSON.stringify(INITIAL_PRODUCTS));
+      localStorage.setItem('nd_products_version', PRODUCT_DATA_VERSION);
+      return INITIAL_PRODUCTS;
+    }
+
     const saved = localStorage.getItem('nd_products');
+
     if (saved !== null) {
       try {
-        let parsed = JSON.parse(saved);
+        const parsed = JSON.parse(saved);
+
         if (Array.isArray(parsed)) {
-          parsed = parsed.map((p: any) => {
-            if (p.imageUrl && p.imageUrl.includes('/public/images/')) {
-              p.imageUrl = p.imageUrl.replace('/public/images/', '/images/');
+          return parsed.map((p: any) => {
+            const freshProduct = INITIAL_PRODUCTS.find((item) => item.id === p.id);
+
+            if (freshProduct) {
+              return {
+                ...freshProduct,
+                visible: p.visible ?? freshProduct.visible,
+              };
             }
-            // Migrate legacy product image patterns to the newly structured pathing
-            const freshProd = INITIAL_PRODUCTS.find(ip => ip.id === p.id);
-            if (freshProd) {
-              p.imageUrl = freshProd.imageUrl;
-            }
+
             return p;
           });
         }
-        return parsed;
+
+        return INITIAL_PRODUCTS;
       } catch (e) {
+        localStorage.setItem('nd_products', JSON.stringify(INITIAL_PRODUCTS));
         return INITIAL_PRODUCTS;
       }
     }
+
     localStorage.setItem('nd_products', JSON.stringify(INITIAL_PRODUCTS));
     return INITIAL_PRODUCTS;
   });
-
   const [notices, setNotices] = useState<NoticeBoardPost[]>(() => {
     const saved = localStorage.getItem('nd_notices');
     if (saved !== null) {
