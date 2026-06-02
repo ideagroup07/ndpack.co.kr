@@ -662,7 +662,7 @@ export default function App() {
                 {/* 1. Page Title */}
                 <PageHeader 
                   eyebrow="COMPANY PROFILE"
-                  title={<>신선함과 가치를 온전히 보관하는 일,<br />엔디팩이 지켜온 약속입니다.</>}
+                  title={<>청결한 품질과 제품의 가치를 지키는 일,<br />엔디팩이 이어온 약속입니다.</>}
                   mbClass="mb-12 border-b border-gray-105 pb-12 !max-w-4xl"
                   className="!text-center md:!text-left"
                 />
@@ -703,25 +703,21 @@ export default function App() {
                   </div>
 
                   <div className="lg:col-span-12 xl:col-span-7 space-y-6 text-gray-800 text-base font-medium">
-                    <h3 className="text-xl font-black text-gray-900 flex items-center space-x-1">
-                      <span>안녕하십니까, 엔디팩(New Developing Pack)에 오신 고객 여러분을 개발 환영합니다.</span>
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-black text-gray-900 leading-relaxed break-keep tracking-tight">
+                      안녕하십니까. 엔디팩(New Developing Pack)을 찾아주신 고객 여러분께 진심으로 감사드립니다.
                     </h3>
                     <div className="leading-relaxed space-y-5 font-sans text-gray-700">
                       <p className="text-base md:text-lg">
-                        포장재는 단순하게 물질을 안에 채워 넣는 껍데기가 아닙니다. 내부의 습과 기압, 가스를 완벽하게 차단 보관함으로써 
-                        생산자가 가공한 당초 컨디션을 최종 소비자의 입과 손에 닿을 때까지 한 치 유실 없이 보호하는 과학입니다.
+                        엔디팩은 1990년 창립 이래 포장재 인쇄와 가공 제조 분야에 집중해 온 전문 기업입니다. 비닐팩, 파우치, 기능성 필름 합지, 그라비어 인쇄 등 다양한 생산 경험을 바탕으로 고객 제품에 적합한 포장 솔루션을 제공하고 있습니다.
                       </p>
                       <p className="text-base md:text-lg">
-                        당사는 1990년 창립 이래 오직 비닐팩, 파우치 가공을 비롯하여 NY, PET, OPP 재질 등 다양한 기능성 특수 고분자 수지 합지 및 초정밀 그라비어 
-                        인쇄 라인이라는 포장제조 단일 외길만을 신뢰와 기술력을 바탕으로 걸어왔습니다.
+                        포장재는 제품을 보호하고 브랜드 가치를 전달하는 중요한 요소입니다. 엔디팩은 정확한 공정 관리와 안정적인 품질 기준을 바탕으로 식품, 생활용품, 산업용 제품 등 다양한 분야에 맞는 포장재를 제조하고 있습니다.
                       </p>
                       <p className="text-base md:text-lg">
-                        특히, 최근 성서공단 통합 본사로 공정을 대형화하고, 최청정 클린룸 ‘Grade S’ 환경 배리어 제작 시스템을 굳건히 가동하여 영유아 이유식 가루 스틱 파우치부터 
-                        고가 정밀 마스크 멸균 보전까지 어떤 극단의 제품이라도 최적화하여 안전하게 제작해내고 있습니다.
+                        앞으로도 고객사의 요구에 맞춘 합리적인 제안과 성실한 납기 대응으로 신뢰받는 포장재 인쇄·제조 파트너가 되겠습니다.
                       </p>
                       <p className="text-base md:text-lg">
-                        앞으로도 엔디팩은 고객사의 입장에 서서 최적의 원가 설계, 마이크로 텐션 오차 조정, 
-                        그리고 성실한 출고 납기를 준수하여 영원한 B2B 비즈니스 성장 기둥이 되도록 전 직원이 정진하겠습니다.
+                        감사합니다.
                       </p>
                     </div>
                     {/* Sign-off */}

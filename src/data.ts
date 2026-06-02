@@ -73,7 +73,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     shape: '자동롤형',
     description: 'B2B 대량 고속 자동 설비에 연계하여 직접 충진 성형할 수 있도록 슬리팅 가공된 고정밀 롤 필름 형태입니다. 규격 폭단위 오차 없는 제어를 통해 산업용 연속 가동 생산성을 실현합니다.',
     applications: ['소포장 소스 자동 충진 롤', '스틱 커피 팩 연속 롤', '낱개 마스크 밀봉 포장용'],
-    imageUrl: '/images/product/product-07.jpg',
+    imageUrl: '/images/product/product-07.png',
     visible: true
   }
 ];
