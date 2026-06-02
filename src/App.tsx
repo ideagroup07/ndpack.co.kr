@@ -662,7 +662,7 @@ export default function App() {
                 {/* 1. Page Title */}
                 <PageHeader 
                   eyebrow="COMPANY PROFILE"
-                  title={<>청결한 품질과 제품의 가치를 지키는 일,<br />엔디팩이 이어온 약속입니다.</>}
+                  title={<>깨끗한 공정과 안정적인 품질로,<br />제품의 가치를 온전히 전합니다.</>}
                   mbClass="mb-12 border-b border-gray-105 pb-12 !max-w-4xl"
                   className="!text-center md:!text-left"
                 />
