@@ -563,7 +563,7 @@ export default function App() {
                         >
                           <div className="relative overflow-hidden shrink-0">
                             <ProductImage 
-                              src={prod.thumbnailUrl || prod.imageUrl} 
+                             src={prod.imageUrl} 
                               type={prod.thumbnailType}
                               fileName={prod.thumbnailFileName}
                               alt={prod.name} 
@@ -939,7 +939,7 @@ export default function App() {
                         >
                           <div className="relative overflow-hidden shrink-0">
                             <ProductImage 
-                              src={prod.thumbnailUrl || prod.imageUrl} 
+                              src={prod.imageUrl}
                               type={prod.thumbnailType}
                               fileName={prod.thumbnailFileName}
                               alt={prod.name} 
@@ -1020,7 +1020,7 @@ export default function App() {
                             }
                           >
                             <ProductImage 
-                              src={selectedProduct.thumbnailUrl || selectedProduct.imageUrl} 
+                              src={selectedProduct.imageUrl}
                               type={selectedProduct.thumbnailType}
                               fileName={selectedProduct.thumbnailFileName}
                               alt={selectedProduct.name} 
