@@ -993,20 +993,6 @@ export default function AdminPanel({
                                   <p className="font-bold text-gray-400">규격 및 사이즈:</p>
                                   <p className="text-gray-800 font-bold select-all">{inq.dimensions || '미규정사양'}</p>
                                 </div>
-                                <div className="space-y-1">
-                                  <p className="font-bold text-gray-400">디자인 첨부파일:</p>
-                                  <div className="flex flex-col space-y-1">
-                                    <p className="text-[#00A3FF] font-bold flex items-center space-x-1">
-                                      <FileSpreadsheet className="w-3.5 h-3.5" />
-                                      <span>{inq.attachmentName || '첨부 없음 (기본 샘플 요청)'}</span>
-                                    </p>
-                                    {inq.attachmentName && (
-                                      <p className="text-[10px] text-gray-400 mt-0.5 leading-normal">
-                                        ※ 실제 파일은 Netlify Forms 제출 내역(contact-form)에서 확인 및 다운로드하실 수 있습니다.
-                                      </p>
-                                    )}
-                                  </div>
-                                </div>
                               </div>
                               <div className="space-y-1 pt-2">
                                 <p className="font-bold text-gray-400">추가 요구사항 및 문의내용:</p>

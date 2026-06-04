@@ -20,7 +20,6 @@ import {
   Search, 
   ChevronRight, 
   FileCheck, 
-  Upload, 
   CheckCircle2, 
   Info,
   Building,
@@ -201,8 +200,6 @@ export default function App() {
     quantity: '',
     content: ''
   });
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [isDragOver, setIsDragOver] = useState<boolean>(false);
 
   // Computed Filtered Notices
   const noticeSearchRegex = new RegExp(noticeSearch, 'i');
@@ -274,29 +271,6 @@ export default function App() {
     setInquiryForm(prev => ({ ...prev, [formFieldName]: value }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setUploadedFile(e.target.files[0]);
-    }
-  };
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(true);
-  };
-
-  const handleDragLeave = () => {
-    setIsDragOver(false);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      setUploadedFile(e.dataTransfer.files[0]);
-    }
-  };
-
   const handleInquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -316,52 +290,10 @@ export default function App() {
       shape: inquiryForm.shape,
       dimensions: `${inquiryForm.width || '0'}mm x ${inquiryForm.length || '0'}mm ${inquiryForm.gusset ? `x ${inquiryForm.gusset}mm` : ''}`,
       quantity: inquiryForm.quantity ? `${Number(inquiryForm.quantity).toLocaleString()} 장` : '협의 필요',
-      attachmentName: uploadedFile ? uploadedFile.name : undefined,
       content: inquiryForm.content,
       status: '대기중',
       createdAt: new Date().toISOString().split('T')[0]
     };
-
-    // Submit to Netlify via FormData
-    const formData = new FormData();
-    formData.append('form-name', 'contact-form');
-    formData.append('company', inquiryForm.companyName);
-    formData.append('name', inquiryForm.contactName);
-    formData.append('phone', inquiryForm.phone);
-    if (inquiryForm.email) {
-      formData.append('email', inquiryForm.email);
-    }
-    formData.append('purpose', inquiryForm.purpose);
-    formData.append('shape', inquiryForm.shape);
-    if (inquiryForm.width) {
-      formData.append('width', inquiryForm.width);
-    }
-    if (inquiryForm.length) {
-      formData.append('length', inquiryForm.length);
-    }
-    if (inquiryForm.gusset) {
-      formData.append('gusset', inquiryForm.gusset);
-    }
-    if (inquiryForm.quantity) {
-      formData.append('quantity', inquiryForm.quantity);
-    }
-    if (inquiryForm.content) {
-      formData.append('message', inquiryForm.content);
-    }
-    if (uploadedFile) {
-      formData.append('attachment', uploadedFile);
-    }
-
-    fetch('/', {
-      method: 'POST',
-      body: formData,
-    })
-      .then(() => {
-        console.log('Netlify Forms submission successful');
-      })
-      .catch((err) => {
-        console.error('Netlify Forms submission failed:', err);
-      });
 
     const updated = [newInquiry, ...inquiries];
     handleUpdateInquiries(updated);
@@ -381,7 +313,6 @@ export default function App() {
       quantity: '',
       content: ''
     });
-    setUploadedFile(null);
   };
 
   // Products filters lists
@@ -1390,7 +1321,7 @@ export default function App() {
                 {/* Title */}
                 <PageHeader 
                   eyebrow="QUOTATION INQUIRY"
-                  title="포장재 무상 맞춤 견적 신청"
+                  title={<span className="block break-keep">맞춤 포장재 견적문의</span>}
                   description="내용물의 특성에 맞는 필름 재질 추천과 디자인 동판인쇄에 적합한 가이드 및 견적을 1영업일 이내 송신 드립니다."
                   mbClass="mb-16"
                 />
@@ -1417,8 +1348,8 @@ export default function App() {
                           <p>삼방형, T형, 지퍼형, 자동롤형 등 원하는 포장 형태를 선택해 주세요. 어떤 형태가 적합한지 모르겠다면 문의내용에 간단히 적어주시면 됩니다.</p>
                         </div>
                         <div className="space-y-1">
-                          <p className="text-gray-800 font-bold">3. 참고자료 첨부</p>
-                          <p>디자인 시안, 제품 사진, 기존 포장재 사진, 참고자료가 있다면 첨부해 주세요. 자료가 없어도 견적문의는 가능합니다.</p>
+                          <p className="text-gray-800 font-bold">3. 참고자료 이메일 접수</p>
+                          <p className="break-keep">도면, 제품 사진, 디자인 시안, 참고자료가 있는 경우 견적 접수 후 담당자 이메일(jungha0205@hanmail.net)로 별도 접수해 주시면 더욱 신속히 답변해 드립니다.</p>
                         </div>
                       </div>
                     </div>
@@ -1436,12 +1367,7 @@ export default function App() {
                       onSubmit={handleInquirySubmit} 
                       className="space-y-6 text-xs text-gray-700" 
                       id="b2b-inquiry-form-actual"
-                      name="contact-form"
-                      method="POST"
-                      data-netlify="true"
-                      encType="multipart/form-data"
                     >
-                      <input type="hidden" name="form-name" value="contact-form" />
                       
                       {/* Company Info row */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1588,44 +1514,21 @@ export default function App() {
 
                       </div>
 
-                      {/* Interactive Drag & Drop File Upload area */}
-                      <div className="space-y-1.5">
-                        <label className="font-extrabold text-gray-600 block">참고자료 첨부</label>
-                        <div 
-                          onDragOver={handleDragOver}
-                          onDragLeave={handleDragLeave}
-                          onDrop={handleDrop}
-                          className={`border-2 border-dashed rounded-2xl p-6 text-center transition-all ${
-                            isDragOver 
-                              ? 'border-[#00A3FF] bg-blue-50/20' 
-                              : uploadedFile 
-                                ? 'border-green-400 bg-green-50/10' 
-                                : 'border-gray-300 hover:border-[#00A3FF]/40 bg-gray-50/40'
-                          }`}
-                        >
-                          <input 
-                            type="file"
-                            id="file-input-actual"
-                            name="attachment"
-                            onChange={handleFileChange}
-                            className="hidden"
-                          />
-                          <label htmlFor="file-input-actual" className="cursor-pointer space-y-2.5 block select-none">
-                            <Upload className={`w-8 h-8 mx-auto ${uploadedFile ? 'text-green-500' : 'text-gray-400'}`} />
-                            <div className="text-xs">
-                              {uploadedFile ? (
-                                <p className="font-bold text-green-600">선택 완료: {uploadedFile.name} ({(uploadedFile.size / 1024).toFixed(1)} KB)</p>
-                              ) : (
-                                <p className="text-gray-500">
-                                  디자인 시안, 제품 사진, 기존 포장재 사진, 참고자료가 있다면 첨부해 주세요.
-                                </p>
-                              )}
-                            </div>
-                          </label>
+                      {/* 참고자료 전달 안내 */}
+                      <div className="space-y-1.5 font-sans">
+                        <label className="font-extrabold text-gray-600 block">참고자료 전달 안내</label>
+                        <div className="bg-sky-50/60 border border-sky-100 rounded-2xl p-5 text-xs text-gray-650 leading-normal break-keep">
+                          <p className="font-extrabold text-gray-800 text-sm mb-1.5 flex items-center space-x-1.5">
+                            <span className="inline-block w-1.5 h-1.5 bg-[#00A3FF] rounded-full"></span>
+                            <span>참고자료 전달 안내</span>
+                          </p>
+                          <p className="font-medium text-gray-600 mb-3 leading-relaxed break-keep">
+                            도면, 제품 사진, 디자인 시안, 참고자료가 있는 경우 견적문의 접수 후 담당자 이메일로 별도 전달해 주세요.
+                          </p>
+                          <p className="font-bold text-gray-700 bg-white border border-sky-100/60 rounded-xl px-4 py-2.5 inline-block">
+                            자료 전달 이메일: <a href="mailto:jungha0205@hanmail.net" className="text-[#00A3FF] hover:underline font-mono">jungha0205@hanmail.net</a>
+                          </p>
                         </div>
-                        <p className="text-[11px] text-gray-500 font-medium leading-normal mt-1.5 pl-1">
-                          ※ 첨부파일은 선택사항이며, 8MB 이하 파일만 첨부 가능합니다. 대용량 자료는 견적문의 접수 후 이메일로 별도 전달해 주세요.
-                        </p>
                       </div>
 
                       {/* Content textarea */}

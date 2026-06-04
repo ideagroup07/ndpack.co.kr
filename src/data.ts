@@ -119,7 +119,6 @@ export const INITIAL_INQUIRIES = [
     shape: '지퍼형',
     dimensions: '180mm x 240mm x 40mm',
     quantity: '50,000 장',
-    attachmentName: 'cookie_pouch_design_v2.ai',
     content: '베이커리 매장에서 활용한 호두 파이 및 수제 유기농 쿠키 보관용 지퍼스탠드 파우치 제작 의뢰 드립니다. 전면에는 투명창 가공이 약간 세로 슬릿으로 들어가서 제품 상태가 보였으면 합니다. 추천하시는 견적과 제작 리드타임을 알려주시면 감사드리겠습니다.',
     status: '대기중' as const,
     createdAt: '2026-05-25'
@@ -134,7 +133,6 @@ export const INITIAL_INQUIRIES = [
     shape: '삼방형',
     dimensions: '220mm x 320mm (평면)',
     quantity: '100,000 장',
-    attachmentName: 'jeju_mackerel_spec.pdf',
     content: '급속 동결 포장 후 냉동 탑차로 이송되는 제주산 손질 갈치 및 자반 고등어 진공 보관 무광 나일론 삼방 포장 봉투 견적 의뢰합니다. 냉동 중 영하 20도 미만의 환경에서 터지지 않는 고유연 내냉 PE수지로 강밀한 투명 합지를 제안해 주세요. 대랑 주문 시 가격 혜택을 원합니다.',
     status: '검토중' as const,
     createdAt: '2026-05-24'
