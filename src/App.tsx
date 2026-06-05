@@ -679,7 +679,7 @@ export default function App() {
                 <div className="bg-gray-50 rounded-3xl p-8 sm:p-12 border border-gray-100" id="vision-mission-cards">
                   <div className="text-center max-w-2xl mx-auto space-y-4 mb-12">
                     <h3 className="text-sm font-black text-[#00A3FF] uppercase tracking-wider font-mono">VALUES & MISSION</h3>
-                    <h4 className="text-2xl font-black text-gray-900 font-extrabold text-gray-800">엔디팩 경영 3대 핵심 기치</h4>
+                    <h4 className="text-2xl font-black text-gray-900 font-extrabold text-gray-800">엔디팩 경영 3대 핵심 가치</h4>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6.5">
