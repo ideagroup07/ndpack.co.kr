@@ -145,7 +145,7 @@ export default function App() {
     const saved = localStorage.getItem('nd_settings');
     if (saved !== null) {
       const parsed = JSON.parse(saved);
-      if (parsed.ceoName === '정철우' || !parsed.hasOwnProperty('mobile')) {
+      if (parsed.ceoName === '정하용' || !parsed.hasOwnProperty('mobile')) {
         localStorage.setItem('nd_settings', JSON.stringify(DEFAULT_SETTINGS));
         return DEFAULT_SETTINGS;
       }
